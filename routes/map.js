@@ -17,15 +17,19 @@ function formatQueryParams(params) {
     return queryItems.join('&');
 }
 
-router.post("/", (req, res, next) => {
-    const zip = req.body.zip;
+function createURL(zip) {
     const params = {
         key: GOOGLE_GEO_API_KEY,
         address: zip
     };
     const queryString = formatQueryParams(params);
     const url = GOOGLE_GEO_API_URL + '?' + queryString;
-    console.log(url);
+    return url;
+}
+
+router.post("/", (req, res, next) => {
+    const url = createURL(req.body.zip);
+    
     fetch(url)
         .then(response => {
             if (response.ok) {
