@@ -7,18 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Google Maps test</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <main>
+        <h1>Google Maps API</h1>
+        <p>Look up city and state from zip code</p>
         <form action="/" method="post">
             <label for="zip-search">Zip code:</label>
-            <input type="search" id="zip-search" name="zip" aria-label="Search for zip code">
+            <input type="search" id="zip-search" name="zip" aria-label="Search for zip code" 
+            <% if(zip !== null){ %>
+                value="<%= zip %>"
+            <% } %>
+            >
             <input type="submit" value="Submit">
         </form>
-        <div id="results"></div>
+        <% if(results !== null){ %>
+            <div id="results">
+                <h2>City, State, Zip:</h2>
+                <p><%- results %></p>
+            </div>
+        <% } %>
     </main>
+
 </body>
 
 </html>
